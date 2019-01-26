@@ -2,7 +2,7 @@
 Interesting undergraduate projects (some collaborative) started or completed during my studies at UMBC in reverse 
 chronological order.
 
-# TCP and UDP
+# TicTacToe
 Simple Tic-Tac-Toe game designed to be played with a linux shell between one server and client in either UDP or TCP 
 respectively. All work done by myself in python using a text editor, testing done on Debian Linux on my VM.
 
