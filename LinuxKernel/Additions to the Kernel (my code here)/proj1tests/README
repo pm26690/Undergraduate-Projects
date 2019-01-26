@@ -1,0 +1,61 @@
+Currently in the proj1tests directory
+---------------------------------------------
+
+---------------------------------------------
+Systemcall definitions in mailbox directory one directory up
+---------------------------------------------
+
+System call definitions are located in the mailbox directory under "mailbox.c", I would like to think
+I commented and coded in such a way that my intentions are obvious, so I won't talk much about my
+thought process here.
+
+All of my system calls are defined and functional on a basic level, I do not keep track of current
+permissions and I did not, at this time, attempt to add mutexes to my code. In other words there
+is no protection of the critical section, and I do not attempt to solve the readers-writers problem.
+
+More in depth checklist:
+* no mutexes or semaphores or blocking or permissions handling
+* sebald mentioned a function to check the writable range of a pointer in user space, I never found it
+  so its probably pretty easy to break most of my system calls by just feeding them pointers that
+  are way larger or way smaller than the user leads on (n values that is)
+* i used error codes while testing, but none of my drivers include them as I phased them out
+* the error codes I return as well as the explanations for what each is for is explained at the top of
+  mailbox.c for my own convenience while coding
+* if theres a lack of comments in any given portion of my code, it's probably because I copied it
+  from some other portion of MY OWN code, or perhaps my "source" or user space code in msgqueue.c
+
+----------------------------------------------
+Test for kernel calls in "testcalls" directory
+----------------------------------------------
+
+driver.c is the main test program for my syscalls
+
+make to run it, it has the same output everytime (in my experience anyway)
+
+if for some reason my make file doesnt work, just "gcc driver.c -o driver"
+
+All of the system calls are tested for valid and invalid inputs although I did not try to break things
+as well as I should have. If I was smarter I would not have built my own underlying structures so heavily
+and used the lists available in the kernel. It's obvious that I was crunched for time because I didn't have
+complete the finer details of the assignment.
+
+----------------------------------------------
+Test for underlying queue structure in "messagequeues" directory
+----------------------------------------------
+
+msgqueue.c is the "source code" for my system calls, though the system calls are neater and simpler.
+
+make to run it, it has the same output everytime (in my experience anyway)
+
+I first built the prototypes for my member functions that would be called by the system calls and actually
+be doing all of the work in there. The driver for this is very messy and not nearly as comprehensive, I think,
+as the one for my system calls themselves.
+
+----------------------------------------------
+xorcipher directory
+----------------------------------------------
+
+First thing I tackled was the xor cipher, mostly just to get the commit lines in. There may be some other
+code in this file but for the most part it was me playing around with getting the cipher to work. I went
+with the less efficient bytewise cipher that compares 1 byte at a time rather than 4 bytes at a time. It
+compiles, but its not of much interest.
